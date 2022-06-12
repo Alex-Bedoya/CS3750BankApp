@@ -361,3 +361,5 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/CS3750BankApp/Pages/SignUp.cshtml
+/CS3750BankApp/Pages/SignUp.cshtml.cs

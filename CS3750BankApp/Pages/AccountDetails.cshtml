@@ -1,0 +1,100 @@
+﻿@page
+@model CS3750BankApp.Pages.AccountDetailsModel
+@{
+    string account = "Checking";
+
+    /*
+    public class detail {
+        public string date { get; set; };
+        public string sender { get; set; };
+        public string reciever { get; set; };
+        public string description { get; set; };
+        public int amount { get; set; };
+        public string transType { get; set; };
+
+        public detail(string dt, string send, string rec, string desc, int am, string type)
+        {
+            date = dt;
+            sender = send;
+            reciever = rec;
+            description = desc;
+            amount = am;
+            transType = type;
+        }
+
+    }
+
+
+
+    detail[] myob = new detail[] { };
+    myob.
+
+    for (int i = 0; i<10; i++)
+    {
+        detail d1 = new detail("1-" + i, "checking", "savings", "this is test number: " + i, 11 * i, "regular transaction");
+        
+    }
+    */
+      
+
+
+}
+
+<style>
+    table {
+        width: 85%;
+    }
+
+    .table-header {
+        background-color: #0a04c4;
+        font-size: 14px;
+        color: #ffffff;
+        text-transform: uppercase;
+        letter-spacing: 0.03em;
+    }
+    .table-row {
+        background-color: #ffffff;
+        box-shadow: 0px 0px 9px 0px rgba(0,0,0,0.1);
+    }
+
+    
+    table, th, td {
+        padding:10px;
+    }
+    
+
+</style>
+
+<h2>Account Details for @account</h2>
+
+<br />
+
+<div>
+    <table>
+        <tr class="table-header">
+            <th>Date</th>
+            <th>Sender</th>
+            <th>Reciever</th>
+            <th>Description</th>
+            <th>Amount</th>
+            <th>Transaction Type</th>
+        </tr>
+@*
+        here I just loop through 10 times to show an example of how I would loop through all the data
+        I don't know how to get the data yet, so I'm just putting this here until we figure it out.*@
+        @for (int i = 0; i < 10; i++)
+        {
+            <tr class="table-row">
+                <th>1-@i</th>
+                <th>Checking</th>
+                <th>Savings</th>
+                <th>just a normal test</th>
+                @{int test = 11 * i;}
+                <th>$ @test.00</th>
+                <th>regular inner transaction</th>
+            </tr>
+        }
+
+    </table>
+
+</div>

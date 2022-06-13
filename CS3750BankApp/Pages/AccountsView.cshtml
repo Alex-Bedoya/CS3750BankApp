@@ -1,0 +1,49 @@
+﻿@page
+@using CS3750BankApp.Models
+@model CS3750BankApp.Pages.AccountsModel
+@{
+    ViewData["Title"] = "Accounts";
+    Account[] accounts = { new Account(1, "998293829", "Savings", -100000), new Account(2, "998534212", "Checking", 8000), new Account(3, "990567843", "Savings", 500) };
+}
+
+
+@*Font Awesome*@
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css" />
+<link rel="stylesheet" href="css/site.css" />
+
+<div class="container-fluid accountSection">
+    <div class="row">
+        <div class="col-3 fw-bold">
+            <label>Account Number</label>
+        </div>
+        <div class="col-5 fw-bold">
+            <label>Type</label>
+        </div>
+        <div class="col-4 fw-bold">
+            <label>Balance</label>
+        </div>
+    </div>
+
+    @{
+        foreach (Account account in accounts)
+        {
+            <div class="row accountDisplay">
+                <div class="col-3">
+                    <label>@account.AccountNumber</label>
+                </div>
+                <div class="col-5">
+                    <label>@account.Type</label>
+                </div>
+                <div class="col-4">
+                    <label class="@(account.Balance > 0 ? "text-success" : "text-danger")">@account.Balance</label>
+                </div>
+            </div>
+        }
+    }
+
+</div>
+<div class="buttonGroup">
+    <a class="btn btn-primary w-25 float-start my-auto" asp-page="./Transfer"><i class="fa-solid fa-money-bill-transfer"></i>Transfer</a>
+    <a class="btn btn-success w-50 my-auto"><i class="fa-solid fa-money-simple-from-bracket"></i>Deposit</a>
+    <a class="btn btn-danger w-25 float-end my-auto"><i class="fa-solid fa-money-from-bracket"></i>Withdraw</a>
+</div>

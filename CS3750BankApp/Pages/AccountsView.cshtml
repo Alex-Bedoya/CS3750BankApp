@@ -1,9 +1,11 @@
 ﻿@page
+@using CS3750BankApp.DataAccess
 @using CS3750BankApp.Models
 @model CS3750BankApp.Pages.AccountsModel
 @{
     ViewData["Title"] = "Accounts";
-    Account[] accounts = { new Account(1, "998293829", "Savings", -100000), new Account(2, "998534212", "Checking", 8000), new Account(3, "990567843", "Savings", 500) };
+    //Account[] accounts = { new Account(1, "998293829", "Savings", -100000), new Account(2, "998534212", "Checking", 8000), new Account(3, "990567843", "Savings", 500) };
+    List<Account> accounts = DbRepository.GetSubAccounts(1000000);
 }
 
 

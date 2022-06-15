@@ -8,9 +8,9 @@ namespace CS3750BankApp.Pages
     public class IndexModel : PageModel
     {
         private readonly ILogger<IndexModel> _logger;
-        /*private readonly BankDbContext bankDb;
+        private readonly BankDbContext bankDb;
 
-        public IndexModel(BankDbContext bankDb)
+       /* public IndexModel(BankDbContext bankDb)
         {
             this.bankDb = bankDb;
         }*/
@@ -20,25 +20,13 @@ namespace CS3750BankApp.Pages
             _logger = logger;
         }
 
-       // public IEnumerable<User> user { get; set; }
+        public IEnumerable<User> user { get; set; }
 
         public void OnGet()
         {
 
         }
-        /*
-        public async Task<IActionResult> OnPost()
-        {
-            if (ModelState.IsValid)
-            {
-                await bankDb.AddAsync(user);
-                await bankDb.SaveChangesAsync();
-                return RedirectToPage("AccountView");
-            }
-            else
-            {
-                return Page();
-            }
-        }*/
+        
+        
     }
 }

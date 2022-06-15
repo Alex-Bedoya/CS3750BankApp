@@ -1,7 +1,14 @@
 ﻿@page
+@using CS3750BankApp.Models
 @model CS3750BankApp.Pages.AccountDetailsModel
 @{
     string account = "Checking";
+    List<Transactions> trans = Model.transactions;
+
+    //if (Model.transactions.Count() > 0)
+    //{
+    //    trans = Model.transactions;
+    //}
 
 
 
@@ -85,16 +92,16 @@
 @*
         here I just loop through 10 times to show an example of how I would loop through all the data
         I don't know how to get the data yet, so I'm just putting this here until we figure it out.*@
-        @for (int i = 0; i < 10; i++)
+        @for (int i = 0; i < trans.Count(); i++)
         {
             <tr class="table-row">
-                <th>1-@i</th>
-                <th>Checking</th>
-                <th>Savings</th>
-                <th>just a normal test</th>
+                <th>@trans[i].Date</th>
+                <th>@trans[i].Sender Checking</th>
+                <th>@trans[i].Reciever Savings</th>
+                <th>@trans[i].Description just a normal test</th>
                 @{int test = 11 * i;}
-                <th>$ @test.00</th>
-                <th>regular inner transaction</th>
+                <th>$ @trans[i].Amount.00</th>
+                <th>@trans[i].TransactionType</th>
             </tr>
         }
 

@@ -7,7 +7,9 @@ namespace CS3750BankApp.Pages
 {
     public class Index1Model : PageModel
     {
-        private readonly BankDbContext bankDb;
+       private readonly BankDbContext bankDb;
+
+        public User user { get; set; }
 
         public Index1Model(BankDbContext bankDb)
         {
@@ -20,7 +22,7 @@ namespace CS3750BankApp.Pages
 
         public async Task<IActionResult> OnPost()
         {
-            User user = new User();
+            
             if (ModelState.IsValid)
             {
                 await bankDb.AddAsync(user);

@@ -6,12 +6,12 @@ namespace CS3750BankApp.Models
     {
         [Key]
         public int AccountNumber { get; set; }
+      
+        public string? Salt { get; set; }
+      
+        public string? HashedPass { get; set; }
 
-        [Required]
-        public string Salt { get; set; }
-
-        [Required]
-        public string HashedPass { get; set; }
+        public string? Email { get; set; }
 
 
     }

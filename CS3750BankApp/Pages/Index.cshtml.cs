@@ -15,12 +15,12 @@ namespace CS3750BankApp.Pages
             this.bankDb = bankDb;
         }*/
 
+        public User user { get; set; }
+
         public IndexModel(ILogger<IndexModel> logger)
         {
             _logger = logger;
         }
-
-        public IEnumerable<User> user { get; set; }
 
         public void OnGet()
         {

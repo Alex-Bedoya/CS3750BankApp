@@ -38,6 +38,22 @@ namespace CS3750BankApp.DataAccess
                 throw;
             }
         }
+
+        public static void CreateUser(User user)
+        {
+            try
+            {
+                using (BankDbContext db = new BankDbContext())
+                {
+                    db.Users.Add(user);
+                    db.SaveChanges();
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
     } 
    
 }

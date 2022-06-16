@@ -4,8 +4,8 @@ namespace CS3750BankApp.DataAccess
 {
     public class DbRepository
     {
-       public static List<Account> GetSubAccounts(int accountNumber)
-       {
+        public static List<Account> GetSubAccounts(int accountNumber)
+        {
             List<Account> accounts;
             try
             {
@@ -21,6 +21,25 @@ namespace CS3750BankApp.DataAccess
             }
             return accounts;
         }
+
+
+        public static List<Transactions> GetTransactions(string account) 
+        {
+            List<Transactions> transactions;
+            try
+            {
+                using (BankDbContext db = new BankDbContext()) {
+                    transactions = db.Transactions.Where(q => q.Sender == account || q.Reciever == account).ToList();
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            return transactions;
+        
+        }
+
 
         public static void CreateAccount(Account account)
         {

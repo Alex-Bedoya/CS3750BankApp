@@ -14,7 +14,7 @@ namespace CS3750BankApp.DataAccess
         {
             optionsBuilder.UseSqlServer(
 
-               
+
 
                 @"Server=DESKTOP-B6VT6G1\SQLEXPRESS;Database=BankApp;Trusted_Connection=True;");
 

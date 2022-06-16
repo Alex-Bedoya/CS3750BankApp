@@ -13,7 +13,7 @@ namespace CS3750BankApp.DataAccess
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer(
-                @"Server=(localdb)\mssqllocaldb;Database=BankApp;Trusted_Connection=True;");
+                @"Server=DESKTOP-KMK9963\SQLEXPRESS;Database=BankApp;Trusted_Connection=True;");
         }
     }
 }

@@ -38,6 +38,24 @@ namespace CS3750BankApp.DataAccess
                 throw;
             }
         }
+
+        public static List<Transactions> GetTransactions()
+        {
+            List<Transactions> transactions;
+            try
+            {
+                using (BankDbContext db = new BankDbContext())
+                {
+                    transactions = db.Transactions.ToList();
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            return transactions;
+        }
     } 
    
 }

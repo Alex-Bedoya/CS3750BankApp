@@ -7,8 +7,9 @@
 
 <h2>Log in</h2>
 
-<form action="hangmanLogin.php" method="post">
+<form method="post">
 	<p>Username: <input type="text" name="Username"</input></p>
-	<p>Password: <input type="password" name="Password"</input></p>
+	<p>Password: <label asp-for="user.HashedPass" onforminput="text" /></p>
 	<input type="submit" value="Submit">
-	</form>
+	<a href="Register">Register</a>
+</form>

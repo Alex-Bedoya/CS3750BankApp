@@ -12,8 +12,8 @@ namespace CS3750BankApp.DataAccess
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            //optionsBuilder.UseSqlServer(@"Server=DESKTOP-B6VT6G1\SQLEXPRESS;Database=BankApp;Trusted_Connection=True;");
-            optionsBuilder.UseSqlServer("server=localhost;database=BankApp;uid=root;password="); //Adam
+            optionsBuilder.UseSqlServer(@"Server=DESKTOP-B6VT6G1\SQLEXPRESS;Database=BankApp;Trusted_Connection=True;"); //Alex
+            //optionsBuilder.UseSqlServer("server=localhost;database=BankApp;uid=root;password="); //Adam
 
         }
     }

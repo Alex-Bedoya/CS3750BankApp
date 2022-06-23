@@ -7,34 +7,13 @@ namespace CS3750BankApp.Pages
 {
     public class AccountDetailsModel : PageModel
     {
-        //private BankDbContext dbCon;
-        //private DbRepository repo ;
-
-        
-        //private DbRepository repo;
-
-        //public AccountDetailsModel(BankDbContext dbContext)
-        //{
-        //    dbCon = dbContext;
-            
-        //}
-
-        
-
-        //public AccountDetailsModel(DbRepository dbRepository)
-        //{
-        //    repo = dbRepository;
-        //}
-
-        //public List<Transactions> transactions { get; set; }
-
+        public string accType;
         
 
 
-        public async void OnGet()
+        public async void OnGet(string Type)
         {
-            //transactions = _dbContext.Transactions.ToList();
-            //transactions = repo.GetTransactions("Savings");
+            accType = Type;
         }
     }
 }

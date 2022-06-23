@@ -12,6 +12,7 @@ namespace CS3750BankApp.DataAccess
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
+
             optionsBuilder.UseSqlServer(
                 //Ryan Desktop
                 //@"Server=DESKTOP-D61Q4DT;Database=BankApp;Trusted_Connection=True;");

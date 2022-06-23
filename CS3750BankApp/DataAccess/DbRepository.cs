@@ -1,4 +1,5 @@
 ﻿using CS3750BankApp.Models;
+using System.Security.Cryptography;
 
 namespace CS3750BankApp.DataAccess
 {
@@ -73,6 +74,31 @@ namespace CS3750BankApp.DataAccess
                 throw;
             }
         }
+
+        public static User findUser(string id)
+        {
+            User user;
+            try
+            {
+                using (BankDbContext db = new BankDbContext())
+                {
+                    user = db.Users.First(q => q.AccountNumber == Int32.Parse(id));
+                    
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            return user;
+        }
+
+        public static string HashPassword(byte[] bytesToHash, byte[] salt)
+        {
+            var byteResult = new Rfc2898DeriveBytes(bytesToHash, salt, 10000);
+            return Convert.ToBase64String(byteResult.GetBytes(24));
+        }
+
     } 
    
 }

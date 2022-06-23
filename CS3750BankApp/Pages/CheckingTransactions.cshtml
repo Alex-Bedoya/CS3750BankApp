@@ -3,7 +3,7 @@
 @using CS3750BankApp.Models
 @model CS3750BankApp.Pages.TransactionsModel
 @{
-    List<Transactions> transactions = DbRepository.GetAllTransactions();
+    List<Transactions> transactions = DbRepository.GetTransactions("Checking");
 }
 
 @*Font Awesome*@

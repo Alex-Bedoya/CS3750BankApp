@@ -1,43 +1,10 @@
-﻿@page
+﻿@page 
+@using CS3750BankApp.DataAccess
+@using CS3750BankApp.Models
 @model CS3750BankApp.Pages.AccountDetailsModel
 @{
-    string account = "Checking";
-
-    /*
-    public class detail {
-        public string date { get; set; };
-        public string sender { get; set; };
-        public string reciever { get; set; };
-        public string description { get; set; };
-        public int amount { get; set; };
-        public string transType { get; set; };
-
-        public detail(string dt, string send, string rec, string desc, int am, string type)
-        {
-            date = dt;
-            sender = send;
-            reciever = rec;
-            description = desc;
-            amount = am;
-            transType = type;
-        }
-
-    }
-
-
-
-    detail[] myob = new detail[] { };
-    myob.
-
-    for (int i = 0; i<10; i++)
-    {
-        detail d1 = new detail("1-" + i, "checking", "savings", "this is test number: " + i, 11 * i, "regular transaction");
-        
-    }
-    */
-      
-
-
+    List<Transactions> trans = DbRepository.GetTransactions(Model.accNum, Model.accType);
+    ViewData["Title"] = "Account Details";
 }
 
 <style>
@@ -65,7 +32,7 @@
 
 </style>
 
-<h2>Account Details for @account</h2>
+<h2>Account Details for </h2>
 
 <br />
 
@@ -79,22 +46,23 @@
             <th>Amount</th>
             <th>Transaction Type</th>
         </tr>
+      
 @*
         here I just loop through 10 times to show an example of how I would loop through all the data
         I don't know how to get the data yet, so I'm just putting this here until we figure it out.*@
-        @for (int i = 0; i < 10; i++)
+        @for (int i = 0; i < trans.Count(); i++)
         {
             <tr class="table-row">
-                <th>1-@i</th>
-                <th>Checking</th>
-                <th>Savings</th>
-                <th>just a normal test</th>
+                <th>@trans[i].Date</th>
+                <th>@trans[i].Sender</th>
+                <th>@trans[i].Reciever</th>
+                <th>@trans[i].Description</th>
                 @{int test = 11 * i;}
-                <th>$ @test.00</th>
-                <th>regular inner transaction</th>
+                <th>$ @trans[i].Amount.00</th>
+                <th>@trans[i].TransactionType</th>
             </tr>
         }
-
+        
     </table>
 
 </div>

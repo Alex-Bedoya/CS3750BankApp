@@ -3,7 +3,7 @@
 @using CS3750BankApp.Models
 @model CS3750BankApp.Pages.AccountDetailsModel
 @{
-    List<Transactions> trans = DbRepository.GetTransactions(Model.accType);
+    List<Transactions> trans = DbRepository.GetTransactions(Model.accNum, Model.accType);
     ViewData["Title"] = "Account Details";
 }
 

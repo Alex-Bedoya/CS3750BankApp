@@ -34,7 +34,7 @@
                     <label>@account.AccountNumber</label>
                 </div>
                 <div class="col-5">
-                    <a asp-page="AccountDetails" asp-route-Type="@account.Type">@account.Type</a>
+                    <a asp-page="AccountDetails" asp-route-Type="@account.Type" asp-route-AccNum="@account.AccountNumber">@account.Type</a>
                     <label>@account.Type</label>
                 </div>
                 <div class="col-4">

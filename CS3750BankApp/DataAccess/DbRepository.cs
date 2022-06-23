@@ -23,13 +23,30 @@ namespace CS3750BankApp.DataAccess
         }
 
 
-        public static List<Transactions> GetTransactions(string account) 
+        public static List<Transactions> GetAllTransactions(int accountNumber) {
+            List<Transactions> transactions;
+            try
+            {
+                using (BankDbContext db = new BankDbContext())
+                {
+                    transactions = db.Transactions.Where(q => q.AccountNumber == accountNumber).ToList();
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            return transactions;
+        }
+
+
+        public static List<Transactions> GetTransactions(int accountNumber, string accountType) 
         {
             List<Transactions> transactions;
             try
             {
                 using (BankDbContext db = new BankDbContext()) {
-                    transactions = db.Transactions.Where(q => q.Sender == account || q.Reciever == account).ToList();
+                    transactions = db.Transactions.Where(q => (q.AccountNumber == accountNumber) && ( q.Sender == accountType || q.Reciever == accountType) ).ToList();
                 }
             }
             catch (Exception)

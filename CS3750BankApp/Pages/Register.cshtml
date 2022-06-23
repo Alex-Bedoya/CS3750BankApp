@@ -5,29 +5,9 @@
 <h1>Sign up!</h1>
 <div class="border container" style="padding:30px;">
     <form method="post">
-		<div class="form-group row">
-			<div class="col-3">
-				<label asp-for="user.HashedPass"></label>
-			</div>
-			<div class="col-6">
-				<label asp-for="user.HashedPass" class="form-control" />
-			</div>
-		</div>
-		<div class="form-group row">
-			<div class="col-3">
-				<label asp-for="user.Salt"></label>
-			</div>
-			<div class="col-6">
-				<label asp-for="user.Salt" class="form-control" />
-			</div>
-		</div>
-		<div class="form-group row">
-			<div class="col-3 offset-3">
-				<input type="submit" value="Register" class="btn btn-primary form-control" />
-			</div>
-			<div class="col-3">
-				<a asp-page="Index" class="btn btn-success form-control">Back to Login</a>
-			</div>
-		</div>
+        <p>Email:<input type="email" name="email" /></p>
+        <p>Password:<input type="password" name="password" /></p>
+        <p>Confirm Password:<input type="password" name="confirmPassword" /></p>
+        <input type="submit" value="Submit" />
 	</form>
 </div>

@@ -8,12 +8,14 @@ namespace CS3750BankApp.Pages
     public class AccountDetailsModel : PageModel
     {
         public string accType;
+        public int accNum;
         
 
 
-        public async void OnGet(string Type)
+        public async void OnGet(string Type, int AccNum)
         {
             accType = Type;
+            accNum = AccNum;
         }
     }
 }

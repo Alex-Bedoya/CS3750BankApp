@@ -31,7 +31,7 @@ namespace CS3750BankApp.Pages
             user.Salt = salt;
             user.Email = Request.Form["email"];
             string pass = Request.Form["password"];
-            user.HashedPass = HashPassword(Encoding.UTF8.GetBytes(pass), Encoding.UTF8.GetBytes(salt));
+            user.HashedPass = DbRepository.HashPassword(Encoding.UTF8.GetBytes(pass), Encoding.UTF8.GetBytes(salt));
             DbRepository.CreateUser(user);
 
             
@@ -43,10 +43,6 @@ namespace CS3750BankApp.Pages
             rng.GetBytes(bytes);
             return Convert.ToBase64String(bytes);
         }
-        public static string HashPassword(byte[] bytesToHash, byte[] salt)
-        {
-            var byteResult = new Rfc2898DeriveBytes(bytesToHash, salt, 10000);
-            return Convert.ToBase64String(byteResult.GetBytes(24));
-        }
+        
     }
 }

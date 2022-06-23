@@ -76,6 +76,7 @@ namespace CS3750BankApp.DataAccess
             }
         }
 
+
         public static void CreateUser(User user)
         {
             try

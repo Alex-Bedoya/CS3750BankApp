@@ -3,6 +3,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using CS3750BankApp.Models;
 using System.Text;
+using System.ComponentModel.DataAnnotations;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Authentication;
 
 namespace CS3750BankApp.Pages
 {
@@ -10,6 +13,9 @@ namespace CS3750BankApp.Pages
     {
         private readonly ILogger<IndexModel> _logger;
         private readonly BankDbContext bankDb;
+
+        [BindProperty]
+        public Credential Credential { get; set; }
 
         /* public IndexModel(BankDbContext bankDb)
          {
@@ -23,44 +29,80 @@ namespace CS3750BankApp.Pages
             _logger = logger;
         }
 
-        public void OnGet()
+        public void OnGet() //can use to render data in the html section.
         {
 
         }
 
-        public void OnPost()
+        public async Task<IActionResult> OnPostAsync()
+        {
+            if (!ModelState.IsValid) return Page();
+
+            //verify credentaials
+            User user = VerifyCredentials(Credential.AccountNumber, Credential.Password);
+            if (user != null)
+            {
+                // Creating security context
+                /*  var claims = new List<Claim>
+                  {
+                      new Claim(ClaimTypes.Name, user.Email),
+                      new Claim(ClaimTypes.UserData, Credential.AccountNumber)
+                  };
+                  var identidy = new ClaimsIdentity(claims, "CookieAuth");
+                  ClaimsPrincipal principal = new ClaimsPrincipal(identidy);
+
+                  await HttpContext.SignInAsync("CookieAuth", principal);*/
+                /*Route route = new Route("/AccountsView/", "{account:int}", user.AccountNumber);*/
+
+                HttpContext.Session.SetString("Account", Credential.AccountNumber);
+
+                return RedirectToPage("AccountsView");
+            }
+
+            return Page();
+        }
+
+        private User VerifyCredentials(string accountNumber, string password)
         {
             User user = new User();
-            string accountId = Request.Form["id"];
-            string password = Request.Form["password"];
-
             try
-            {              
-                user = DbRepository.findUser(accountId);
+            {
+                user = DbRepository.findUser(accountNumber);
             }
-            catch(Exception e){
+            catch (Exception e)
+            {
                 Console.WriteLine(e);
             }
-            
-            if(user == null)
+
+            if (user == null)
             {
                 Console.WriteLine("no user");
             }
-            try
+            else
             {
-                if (user.AccountNumber == Int32.Parse(accountId))
+                try
                 {
-                    if (user.HashedPass == DbRepository.HashPassword(Encoding.UTF8.GetBytes(password), Encoding.UTF8.GetBytes(user.Salt)))
+                    if (user.AccountNumber == Int32.Parse(password))
                     {
-                        Console.WriteLine("logged in");
+                        if (user.HashedPass == DbRepository.HashPassword(Encoding.UTF8.GetBytes(password), Encoding.UTF8.GetBytes(user.Salt)))
+                        {
+                            Console.WriteLine("logged in");
+                        }
+                        else { Console.WriteLine("wrong password"); }
                     }
-                    else { Console.WriteLine("wrong password"); }
                 }
-            }catch(Exception e) { Console.WriteLine(e); }
+                catch (Exception e) { Console.WriteLine(e); }
+            }
+            return user;
         }
-        
+    }
 
-        
-        
+    public class Credential
+    {
+        [Required]
+        public string AccountNumber { get; set; }
+        [Required]
+        [DataType(DataType.Password)]
+        public string Password { get; set; }
     }
 }

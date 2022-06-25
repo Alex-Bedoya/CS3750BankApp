@@ -1,15 +1,35 @@
 ﻿@page
+@using CS3750BankApp.Models
 @model IndexModel
 @{
     ViewData["Title"] = "Home page";
+
 }
 
 
 <h2>Log in</h2>
-
-<form method="post">
-	<p>Username: <input type="text" name="id"</input></p>
-	<p>Password: <input type="password" name="password" /></p>
-	<input type="submit" value="Submit">
-	<a href="Register">Register</a>
-</form>
+<div class="container">
+    <form method="post">
+        <div class="text-danger" asp-validation-summary="ModelOnly"></div>
+        <div class="row">
+            <div class="col">
+                <label asp-for="Credential.AccountNumber">Account Number:&nbsp;</label>
+                <input asp-for="Credential.AccountNumber" class="form-control w-25" />
+            </div>
+            <span class="text-danger" asp-validation-for="Credential.AccountNumber"></span>
+        </div>
+        <div class="row">
+            <div class="col">
+                <label asp-for="Credential.Password">Password:&nbsp;</label>
+                <input asp-for="Credential.Password" class="form-control w-25" type="password"/>
+            </div>
+            <span class="text-danger" asp-validation-for="Credential.Password"></span>
+        </div>
+        <div class="row">
+            <div class="col">
+                <button type="submit" class="btn btn-primary" runat="server">Login</button>
+                <a class="btn btn-secondary" href="Register">Register</a>
+            </div>
+        </div>
+    </form>
+</div>

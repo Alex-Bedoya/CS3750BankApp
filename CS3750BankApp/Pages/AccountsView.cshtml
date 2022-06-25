@@ -3,17 +3,6 @@
 @using CS3750BankApp.Models
 @model CS3750BankApp.Pages.AccountsModel
 @{
-    //ViewData["Title"] = "Accounts";
-    //Account[] accounts = { new Account(1, "998293829", "Savings", -100000), new Account(2, "998534212", "Checking", 8000), new Account(3, "990567843", "Savings", 500) };
-    //List<Account> accounts = new List<Account>();
-    //string accountNum = HttpContext.Session.Get("Account").ToString();
-    //    accounts = DbRepository.GetSubAccounts(Int32.Parse(accountNum)); 
-
-    //int accountNum; Int32.TryParse(HttpContext.Session.Get("Account").ToString(), out accountNum);
-    //int accountNum = (int)HttpContext.Session.GetInt32("_Account");
-    
-    //List<Account> Accounts = DbRepository.GetSubAccounts(accountNum);
-
    
 }
 
@@ -22,6 +11,7 @@
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css" />
 <link rel="stylesheet" href="css/site.css" />
 
+<h2>Accounts For Account Number: @accountNum</h2>
 <div class="container-fluid accountSection">
     <div class="row">
         <div class="col-3 fw-bold">

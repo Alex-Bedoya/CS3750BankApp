@@ -33,8 +33,11 @@ namespace CS3750BankApp.Pages
             string pass = Request.Form["password"];
             user.HashedPass = DbRepository.HashPassword(Encoding.UTF8.GetBytes(pass), Encoding.UTF8.GetBytes(salt));
             DbRepository.CreateUser(user);
+            //set the current account nubmer in the session
+            HttpContext.Session.SetString("Account", user.AccountNumber.ToString());
+            Response.Redirect("/AccountsView");
 
-            
+
         }
         public static string GenerateSalt()
         {

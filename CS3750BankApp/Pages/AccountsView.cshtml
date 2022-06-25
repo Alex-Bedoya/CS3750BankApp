@@ -3,9 +3,15 @@
 @using CS3750BankApp.Models
 @model CS3750BankApp.Pages.AccountsModel
 @{
-    ViewData["Title"] = "Accounts";
+    //ViewData["Title"] = "Accounts";
     //Account[] accounts = { new Account(1, "998293829", "Savings", -100000), new Account(2, "998534212", "Checking", 8000), new Account(3, "990567843", "Savings", 500) };
-    List<Account> accounts = DbRepository.GetSubAccounts(1000000);
+    //List<Account> accounts = new List<Account>();
+    //string accountNum = HttpContext.Session.Get("Account").ToString();
+    //    accounts = DbRepository.GetSubAccounts(Int32.Parse(accountNum)); 
+
+    int accountNum; Int32.TryParse(HttpContext.Session.Get("Account").ToString(), out accountNum);
+    List<Account> Accounts = DbRepository.GetSubAccounts(accountNum);
+   
 }
 
 
@@ -27,7 +33,7 @@
     </div>
 
     @{
-        foreach (Account account in accounts)
+        foreach (Account account in Accounts)
         {
             <div class="row accountDisplay">
                 <div class="col-3">

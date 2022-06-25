@@ -85,6 +85,16 @@ namespace CS3750BankApp.DataAccess
                 {
                     db.Users.Add(user);
                     db.SaveChanges();
+
+                    //create the 3 accounts associated with a user
+                    Account ac = new Account(user.AccountNumber, "Checking", 0);
+                    CreateAccount(ac);
+                    ac = new Account(user.AccountNumber, "Savings", 0);
+                    CreateAccount(ac);
+                    ac = new Account(user.AccountNumber, "Other", 0);
+                    CreateAccount(ac);
+
+                    db.SaveChanges();
                 }
             }
             catch (Exception)

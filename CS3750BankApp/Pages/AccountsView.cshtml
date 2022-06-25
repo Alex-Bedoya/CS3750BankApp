@@ -9,7 +9,9 @@
     //string accountNum = HttpContext.Session.Get("Account").ToString();
     //    accounts = DbRepository.GetSubAccounts(Int32.Parse(accountNum)); 
 
-    int accountNum; Int32.TryParse(HttpContext.Session.Get("Account").ToString(), out accountNum);
+    int accountNum;
+    accountNum = Int32.Parse(HttpContext.Session.GetString("Account"));
+    //Int32.TryParse(HttpContext.Session.Get("Account").ToString(), out accountNum);//this line wasn't properly converting for some reason
     List<Account> Accounts = DbRepository.GetSubAccounts(accountNum);
    
 }
@@ -19,6 +21,7 @@
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css" />
 <link rel="stylesheet" href="css/site.css" />
 
+<h2>Accounts For Account Number: @accountNum</h2>
 <div class="container-fluid accountSection">
     <div class="row">
         <div class="col-3 fw-bold">

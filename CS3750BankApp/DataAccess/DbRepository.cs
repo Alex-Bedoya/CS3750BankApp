@@ -92,7 +92,6 @@ namespace CS3750BankApp.DataAccess
                 throw;
             }
         }
-
         public static User findUser(string id)
         {
             User user;

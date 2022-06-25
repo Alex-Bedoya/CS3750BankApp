@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CS3750BankApp.Models
 {
@@ -12,7 +13,6 @@ namespace CS3750BankApp.Models
 
         [Required]
         public string? HashedPass { get; set; }
-
         public string? Email { get; set; }
     }
 }

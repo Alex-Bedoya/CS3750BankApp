@@ -14,6 +14,8 @@ namespace CS3750BankApp.Pages
         private readonly ILogger<IndexModel> _logger;
         private readonly BankDbContext bankDb;
 
+        public const string SessionKeyAccount = "_Account";
+
         [BindProperty]
         public Credential Credential { get; set; }
 
@@ -53,8 +55,8 @@ namespace CS3750BankApp.Pages
 
                   await HttpContext.SignInAsync("CookieAuth", principal);*/
                 /*Route route = new Route("/AccountsView/", "{account:int}", user.AccountNumber);*/
-
-                HttpContext.Session.SetString("Account", Credential.AccountNumber);
+                HttpContext.Session.SetInt32(SessionKeyAccount, user.AccountNumber);
+                //HttpContext.Session.SetString("Account", Credential.AccountNumber);
 
                 return RedirectToPage("AccountsView");
             }

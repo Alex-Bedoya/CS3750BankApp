@@ -84,16 +84,22 @@ namespace CS3750BankApp.Pages
             {
                 try
                 {
-                    if (user.AccountNumber == Int32.Parse(password))
+                    if (user.AccountNumber == Int32.Parse(accountNumber))
                     {
                         if (user.HashedPass == DbRepository.HashPassword(Encoding.UTF8.GetBytes(password), Encoding.UTF8.GetBytes(user.Salt)))
                         {
                             Console.WriteLine("logged in");
                         }
-                        else { Console.WriteLine("wrong password"); }
+                        else { 
+                            Console.WriteLine("wrong password");
+                            user = null;
+                        }
                     }
                 }
-                catch (Exception e) { Console.WriteLine(e); }
+                catch (Exception e) {
+                    Console.WriteLine(e); 
+                    user = null;
+                }
             }
             return user;
         }
@@ -106,5 +112,6 @@ namespace CS3750BankApp.Pages
         [Required]
         [DataType(DataType.Password)]
         public string Password { get; set; }
+        public bool Correct { get; set; }
     }
 }

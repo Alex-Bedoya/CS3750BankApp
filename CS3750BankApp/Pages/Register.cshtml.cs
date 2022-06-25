@@ -9,9 +9,7 @@ namespace CS3750BankApp.Pages
 {
     public class Index1Model : PageModel
     {
-       private readonly BankDbContext bankDb;
-
-        
+      
 
         /*public Index1Model(BankDbContext bankDb)
         {

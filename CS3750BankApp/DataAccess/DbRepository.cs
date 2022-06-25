@@ -144,6 +144,83 @@ namespace CS3750BankApp.DataAccess
 
         }
 
+        public static bool CheckFunds(int SubAccount, int amount)
+        {
+            bool check = false;
+            try
+            {
+                using (BankDbContext db = new BankDbContext())
+                {
+                    check = db.Accounts.First(q => q.ID == SubAccount).Balance >= amount;
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+            return check;
+        }
+
+        public static void CreateTransaction(Transactions transactions)
+        {
+            try
+            {
+                using (BankDbContext db = new BankDbContext())
+                {
+                    db.Transactions.Add(transactions);
+                    db.SaveChanges();
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        public static void ManageFunds(int subAccount, int amount)
+        {
+            try
+            {
+                using (BankDbContext db = new BankDbContext())
+                {
+                    db.Accounts.First(q => q.ID == subAccount).Balance += amount;
+                    db.SaveChanges();
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        public static string GetAccountType(int subAccountId)
+        {
+            string accountType = null;
+
+            try
+            {
+                using (BankDbContext db = new BankDbContext())
+                {
+                    accountType = db.Accounts.First(q => q.ID == subAccountId).Type;
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+            return accountType;
+        }
+
+        /// <summary>
+        /// You have failed me Anakin
+        /// </summary>
+        /// <returns></returns>
         public static List<Transactions> GetAllTransactions()
         {
             List<Transactions> transactions;
@@ -161,6 +238,20 @@ namespace CS3750BankApp.DataAccess
             return transactions;
         }
 
+
+        public static int ConvertToLargeAmount(int ammount)
+        {
+            return ammount / 100;
+        }
+        /// <summary>
+        /// Numbers go Vroom
+        /// </summary>
+        /// <param name="ammount"></param>
+        /// <returns></returns>
+        public static int ConvertToSmallAmount(int ammount)
+        {
+            return ammount * 100;
+        }
     } 
    
 }

@@ -13,7 +13,6 @@ namespace CS3750BankApp.Models
 
         public Account(int accountNumber, string type, int balance)
         {
-            //ID = iD;
             AccountNumber = accountNumber;
             Type = type;
             Balance = balance;

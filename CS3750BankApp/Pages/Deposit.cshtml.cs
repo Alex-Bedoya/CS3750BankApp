@@ -30,9 +30,20 @@ namespace CS3750BankApp.Pages
                 OnGet();
                 return Page(); }
 
+           
             DepositDetails.Deposit = Int32.Parse(Request.Form["deposit"]);
 
-            int amount = DbRepository.ConvertToSmallAmount(Int32.Parse(DepositDetails.TransferAmmount));
+
+            //double deposit = Double.Parse(Request.Form["deposit"]);
+            //deposit = deposit * 100;
+            //int amount = Convert.ToInt32(deposit);
+            //int amount= 
+            //int amount = DbRepository.ConvertToSmallAmount(Int32.Parse(DepositDetails.TransferAmmount));
+
+            double deposit = Convert.ToDouble(DepositDetails.TransferAmmount);
+            deposit = deposit * 100;
+            int amount = Convert.ToInt32(deposit);
+
 
             if (amount > 0)
             {
@@ -62,10 +73,11 @@ namespace CS3750BankApp.Pages
 
     public class DepositDetails
     {
-        public int Deposit { get; set; }
         [Required]
+        public int Deposit { get; set; }
+        [Required, RegularExpression(@"^\$?\d+(\.(\d{2}))?$", ErrorMessage ="Amount must be in format 00.00 ")]
         [Display(Name = "Amount:")]
-        public string TransferAmmount { get; set; }
+        public decimal TransferAmmount { get; set; }
         [Required]
         [Display(Name = "Description:")]
         public string Description { get; set; }

@@ -31,7 +31,11 @@ namespace CS3750BankApp.Pages
 
             TransferDetails.SelectedTo = Int32.Parse(Request.Form["subTo"]);
             TransferDetails.SelectedFrom = Int32.Parse(Request.Form["subFrom"]);
-            int amount = DbRepository.ConvertToSmallAmount(Int32.Parse(TransferDetails.TransferAmmount));
+
+            double deposit = Convert.ToDouble(TransferDetails.TransferAmmount);
+            deposit = deposit * 100;
+            int amount = Convert.ToInt32(deposit);
+            //int amount = DbRepository.ConvertToSmallAmount(Int32.Parse(TransferDetails.TransferAmmount));
 
             if (DbRepository.CheckFunds(TransferDetails.SelectedFrom, amount))
             {
@@ -54,6 +58,7 @@ namespace CS3750BankApp.Pages
 
                 return RedirectToPage("AccountsView");
             }
+
             negativeAccountMsg = "Not enough money in account!";
             OnGet();
             return Page();
@@ -64,9 +69,9 @@ namespace CS3750BankApp.Pages
     {
         public int SelectedTo { get; set; }
         public int SelectedFrom { get; set; }
-        [Required]
+        [Required, RegularExpression(@"^\$?\d+(\.(\d{2}))?$", ErrorMessage = "Amount must be in format 00.00 ")]
         [Display(Name = "Amount:")]
-        public string TransferAmmount { get; set; }
+        public decimal TransferAmmount { get; set; }
         [Required]
         [Display(Name = "Description:")]   
         public string Description { get; set; }

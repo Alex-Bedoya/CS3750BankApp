@@ -28,6 +28,7 @@
         
         <div class="row mt-2">
             <div class="col">
+                <span class="text-danger">@Model.negativeAccountMsg</span><br />
                 <label asp-for="WithdrawDetails.TransferAmmount"></label><br />
                 <input asp-for="WithdrawDetails.TransferAmmount" class="form-control w-100" />
             </div>
@@ -38,6 +39,7 @@
                 <label asp-for="WithdrawDetails.Description"></label><br />
                 <input asp-for="WithdrawDetails.Description"  class="form-control w-100" /> 
             </div>
+             <span class="text-danger" asp-validation-for="WithdrawDetails.Description"></span>
         </div>
         <div class="row mt-2">
             <div class="col text-center">

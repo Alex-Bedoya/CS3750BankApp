@@ -8,8 +8,9 @@ namespace CS3750BankApp.Pages
 {
     public class WithdrawModel : PageModel
     {
-
+        public string negativeAccountMsg { get; set; }
         public int accountNum { get; set; }
+        [BindProperty]
         public List<Account> Accounts { get; set; }
         [BindProperty]
         public WithdrawDetails WithdrawDetails { get; set; }
@@ -23,7 +24,11 @@ namespace CS3750BankApp.Pages
 
         public async Task<IActionResult> OnPostAsync()
         {
-            if (!ModelState.IsValid) return Page();
+            if (!ModelState.IsValid)
+            {
+                OnGet();
+                return Page();
+            }
             WithdrawDetails.WithdrawFrom = Int32.Parse(Request.Form["withdraw"]);
             int amount = DbRepository.ConvertToSmallAmount(Int32.Parse(WithdrawDetails.TransferAmmount));
 
@@ -45,8 +50,11 @@ namespace CS3750BankApp.Pages
                 DbRepository.CreateTransaction(transaction);
                 DbRepository.ManageFunds(WithdrawDetails.WithdrawFrom, (amount * -1));
 
+
                 return RedirectToPage("AccountsView");
             }
+            negativeAccountMsg = "Not enough money in account!";
+            OnGet();
             return Page();
         }
 
@@ -57,6 +65,7 @@ namespace CS3750BankApp.Pages
         [Required]
         [Display(Name = "Amount:")]
         public string TransferAmmount { get; set; }
+        [Required]
         [Display(Name = "Description:")]
         public string Description { get; set; }
 

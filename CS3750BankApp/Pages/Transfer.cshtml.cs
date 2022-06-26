@@ -22,7 +22,11 @@ namespace CS3750BankApp.Pages
 
         public async Task<IActionResult> OnPostAsync()
         {
-            if (!ModelState.IsValid) return Page();
+            if (!ModelState.IsValid)
+            {
+                OnGet();
+                return Page();
+            }
 
             TransferDetails.SelectedTo = Int32.Parse(Request.Form["subTo"]);
             TransferDetails.SelectedFrom = Int32.Parse(Request.Form["subFrom"]);
@@ -60,7 +64,8 @@ namespace CS3750BankApp.Pages
         [Required]
         [Display(Name = "Amount:")]
         public string TransferAmmount { get; set; }
-        [Display(Name = "Description:")]
+        [Required]
+        [Display(Name = "Description:")]   
         public string Description { get; set; }
     }
 }

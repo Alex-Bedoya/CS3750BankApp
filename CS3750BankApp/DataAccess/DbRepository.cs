@@ -1,5 +1,7 @@
+
 ﻿using CS3750BankApp.Models;
 using Microsoft.AspNetCore.Mvc;
+
 using System.Security.Cryptography;
 
 namespace CS3750BankApp.DataAccess
@@ -147,24 +149,6 @@ namespace CS3750BankApp.DataAccess
             return Convert.ToBase64String(byteResult.GetBytes(24));
         }
 
-        public static List<Transactions> GetTransactions(string accountType)
-        {
-            List<Transactions> transactions;
-            try
-            {
-                using (BankDbContext db = new BankDbContext())
-                {
-                    transactions = db.Transactions.Where(q => q.Sender == accountType || q.Reciever == accountType).ToList();
-                }
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-            return transactions;
-
-        }
-
         public static bool CheckFunds(int SubAccount, int amount)
         {
             bool check = false;
@@ -238,28 +222,6 @@ namespace CS3750BankApp.DataAccess
             return accountType;
         }
 
-        /// <summary>
-        /// You have failed me Anakin
-        /// </summary>
-        /// <returns></returns>
-        public static List<Transactions> GetAllTransactions()
-        {
-            List<Transactions> transactions;
-            try
-            {
-                using (BankDbContext db = new BankDbContext())
-                {
-                    transactions = db.Transactions.ToList();
-                }
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-            return transactions;
-        }
-
-
         public static int ConvertToLargeAmount(int ammount)
         {
             return ammount / 100;
@@ -273,6 +235,7 @@ namespace CS3750BankApp.DataAccess
         {
             return ammount * 100;
         }
+
     } 
    
 }

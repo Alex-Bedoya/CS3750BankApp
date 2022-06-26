@@ -29,8 +29,17 @@ namespace CS3750BankApp.Pages
                 return Page();
             }
 
-            TransferDetails.SelectedTo = Int32.Parse(Request.Form["subTo"]);
-            TransferDetails.SelectedFrom = Int32.Parse(Request.Form["subFrom"]);
+            try
+            {
+                TransferDetails.SelectedTo = Int32.Parse(Request.Form["subTo"]);
+                TransferDetails.SelectedFrom = Int32.Parse(Request.Form["subFrom"]);
+            }
+            catch (FormatException fe)
+            {
+                negativeAccountMsg = "Must Select an account";
+                OnGet();
+                return Page();
+            }
 
             double deposit = Convert.ToDouble(TransferDetails.TransferAmmount);
             deposit = deposit * 100;

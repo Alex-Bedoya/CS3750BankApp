@@ -8,6 +8,7 @@ namespace CS3750BankApp.Pages
 {
     public class DepositModel : PageModel
     {
+        public string negativeAccountMsg { get; set; }
         public int accountNum { get; set; }
         [BindProperty]
         public List<Account> Accounts { get; set; }
@@ -30,8 +31,16 @@ namespace CS3750BankApp.Pages
                 OnGet();
                 return Page(); }
 
-           
-            DepositDetails.Deposit = Int32.Parse(Request.Form["deposit"]);
+            try
+            {
+                DepositDetails.Deposit = Int32.Parse(Request.Form["deposit"]);
+            }
+            catch (FormatException fe)
+            {
+                negativeAccountMsg = "Must Select an account";
+                OnGet();
+                return Page();
+            }
 
 
             //double deposit = Double.Parse(Request.Form["deposit"]);

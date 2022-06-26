@@ -40,7 +40,15 @@
 
 </style>
 
-<h2>Account Details for @Model.accType</h2>
+@if(@Model.accType.Equals("ALL")) {
+    <h2>Account Details and All Transaction History for Account @Model.accNum</h2>
+}
+else
+{
+    <h2>Account Details and Transaction History of "@Model.accType" for Account @Model.accNum</h2>
+}
+
+
 
 <br />
 
@@ -65,8 +73,11 @@
                 <th>@trans[i].Sender</th>
                 <th>@trans[i].Reciever</th>
                 <th>@trans[i].Description</th>
-                @{int test = 11 * i;}
-                <th>$ @trans[i].Amount.00</th>
+                @{
+                    double amount = trans[i].Amount / 100.0;
+                    string strAmount = amount.ToString("0.##");
+                }
+                <th>$@strAmount</th>
                 <th>@trans[i].TransactionType</th>
             </tr>
         }

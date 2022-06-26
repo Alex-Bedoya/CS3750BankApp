@@ -69,7 +69,7 @@ namespace CS3750BankApp.Pages
             User user = new User();
             try
             {
-                user = DbRepository.findUser(accountNumber);
+                user = DbRepository.FindUser(accountNumber);
             }
             catch (Exception e)
             {

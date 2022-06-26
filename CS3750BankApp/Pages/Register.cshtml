@@ -1,13 +1,38 @@
 ﻿@page
 @model CS3750BankApp.Pages.Index1Model
-@{
-}
+@{}
+
+
 <h1>Sign up!</h1>
 <div class="border container" style="padding:30px;">
     <form method="post">
-        <p>Email:<input type="email" name="email" /></p>
-        <p>Password:<input type="password" name="password" /></p>
-        <p>Confirm Password:<input type="password" name="confirmPassword" /></p>
-        <input type="submit" value="Submit" />
+        <div class="text-danger" asp-validation-summary="ModelOnly"></div>
+        <div class"row">
+            <div class="col">
+            <span class="text-danger">@Model.emailExistsMsg</span><br />
+                <label asp-for="Credentials.Email">Email:&nbsp;</label>
+                <input asp-for="Credentials.Email" class="form-control w-25" />
+            </div>
+            <span class="text-danger" asp-validation-for="Credentials.Email"></span>
+        </div>
+        <div class="row">
+            <div class="col">
+                <label asp-for="Credentials.Password">Password:&nbsp;</label>
+                <input asp-for="Credentials.Password" class="form-control w-25" type="password"/>
+            </div>
+            <span class="text-danger" asp-validation-for="Credentials.Password"></span>
+        </div>
+        <div class="row">
+            <div class="col">
+                <label asp-for="Credentials.ConfirmPassword">Confirm Password:&nbsp;</label>
+                <input asp-for="Credentials.ConfirmPassword" class="form-control w-25" type="password"/>
+            </div>
+            <span class="text-danger" asp-validation-for="Credentials.ConfirmPassword"></span>
+        </div>
+        <div class="row mt-2">
+            <div class="col">
+                <button type="submit" class="btn btn-primary">Register</button>
+            </div>
+        </div>
 	</form>
 </div>

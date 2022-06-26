@@ -29,6 +29,7 @@ namespace CS3750BankApp.Pages
                 OnGet();
                 return Page();
             }
+
             WithdrawDetails.WithdrawFrom = Int32.Parse(Request.Form["withdraw"]);
             int amount = DbRepository.ConvertToSmallAmount(Int32.Parse(WithdrawDetails.TransferAmmount));
 

@@ -16,6 +16,8 @@ namespace CS3750BankApp.Pages
 
         public const string SessionKeyAccount = "_Account";
 
+        public string noUserNameMsg = "";
+
         [BindProperty]
         public Credential Credential { get; set; }
 
@@ -80,6 +82,7 @@ namespace CS3750BankApp.Pages
             if (user == null)
             {
                 Console.WriteLine("no user");
+                noUserNameMsg = "No User by That Account Number!";
             }
             else
             {

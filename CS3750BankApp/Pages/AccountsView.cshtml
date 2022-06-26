@@ -46,6 +46,7 @@
 </div>
 <div class="buttonGroup">
     <a class="btn btn-primary w-25 float-start my-auto" asp-page="./Transfer"><i class="fa-solid fa-money-bill-transfer"></i>Transfer</a>
-    <a class="btn btn-success w-50 my-auto" asp-page="./Deposit"><i class="fa-solid fa-money-simple-from-bracket"></i>Deposit</a>
+    <a class="btn btn-success w-25 my-auto" asp-page="./Deposit"><i class="fa-solid fa-money-simple-from-bracket"></i>Deposit</a>
     <a class="btn btn-danger w-25 float-end my-auto" asp-page="./Withdraw"><i class="fa-solid fa-money-from-bracket"></i>Withdraw</a>
+    <a class="btn btn-danger w-25 float-end my-auto" asp-page="AccountDetails" asp-route-Type="ALL" asp-route-AccNum="@Model.accountNum"><i class="fa-solid fa-money-from-bracket"></i>View All Transactions</a>
 </div>

@@ -3,9 +3,7 @@
 @using CS3750BankApp.Models
 @model CS3750BankApp.Pages.AccountsModel
 @{
-    ViewData["Title"] = "Accounts";
-    //Account[] accounts = { new Account(1, "998293829", "Savings", -100000), new Account(2, "998534212", "Checking", 8000), new Account(3, "990567843", "Savings", 500) };
-    List<Account> accounts = DbRepository.GetSubAccounts(1000000);
+   
 }
 
 
@@ -13,6 +11,7 @@
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css" />
 <link rel="stylesheet" href="css/site.css" />
 
+<h2>Accounts For Account Number: @Model.accountNum</h2>
 <div class="container-fluid accountSection">
     <div class="row">
         <div class="col-3 fw-bold">
@@ -27,7 +26,7 @@
     </div>
 
     @{
-        foreach (Account account in accounts)
+        foreach (Account account in Model.Accounts)
         {
             <div class="row accountDisplay">
                 <div class="col-3">
@@ -47,6 +46,7 @@
 </div>
 <div class="buttonGroup">
     <a class="btn btn-primary w-25 float-start my-auto" asp-page="./Transfer"><i class="fa-solid fa-money-bill-transfer"></i>Transfer</a>
-    <a class="btn btn-success w-50 my-auto"><i class="fa-solid fa-money-simple-from-bracket"></i>Deposit</a>
-    <a class="btn btn-danger w-25 float-end my-auto"><i class="fa-solid fa-money-from-bracket"></i>Withdraw</a>
+    <a class="btn btn-success w-25 my-auto" asp-page="./Deposit"><i class="fa-solid fa-money-simple-from-bracket"></i>Deposit</a>
+    <a class="btn btn-danger w-25 float-end my-auto" asp-page="./Withdraw"><i class="fa-solid fa-money-from-bracket"></i>Withdraw</a>
+    <a class="btn btn-danger w-25 float-end my-auto" asp-page="AccountDetails" asp-route-Type="ALL" asp-route-AccNum="@Model.accountNum"><i class="fa-solid fa-money-from-bracket"></i>View All Transactions</a>
 </div>

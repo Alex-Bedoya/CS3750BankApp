@@ -1,0 +1,48 @@
+﻿@page
+@using CS3750BankApp.Models
+@model CS3750BankApp.Pages.DepositModel
+@{
+}
+<form method="post">
+
+    <div class="popupBox container w-50 pt-2 pb-2">
+        <div class="row mt-2">
+            <div class="col text-center">
+                <h4>Transfer Funds</h4>
+            </div>
+        </div>
+        <div class="row mt-2">
+            <div class="col">
+                <label for="deposit">Deposit To:&nbsp;</label><br />
+                <select name="deposit" id="deposit" class="w-100">
+                    <option value="">Select An Account</option>
+                    @{
+                        foreach (Account account in Model.Accounts)
+                        {
+                            <option value="@account.ID">@account.Type</option>
+                        }
+                    }
+                </select>
+            </div>
+        </div>
+        <div class="row mt-2">
+            <div class="col">
+                <label asp-for="DepositDetails.TransferAmmount"></label><br />
+                <input asp-for="DepositDetails.TransferAmmount" class="form-control w-100" />
+            </div>
+            <span class="text-danger" asp-validation-for="DepositDetails.TransferAmmount"></span>
+        </div>
+        <div class="row mt-2">
+            <div class="col text-center">
+                <label asp-for="DepositDetails.Description"></label><br />
+                <input asp-for="DepositDetails.Description"  class="form-control w-100" /> 
+            </div>
+        </div>
+        <div class="row mt-2">
+            <div class="col text-center">
+                <button type="submit" class="btn btn-primary w-25">Transfer</button>
+            </div>
+        </div>
+    </div>
+
+</form>

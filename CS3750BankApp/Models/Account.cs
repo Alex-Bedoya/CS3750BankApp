@@ -11,9 +11,8 @@ namespace CS3750BankApp.Models
         public string Type { get; set; }//checking, saving, loan
         public int Balance { get; set; }
 
-        public Account(int iD, int accountNumber, string type, int balance)
+        public Account(int accountNumber, string type, int balance)
         {
-            ID = iD;
             AccountNumber = accountNumber;
             Type = type;
             Balance = balance;

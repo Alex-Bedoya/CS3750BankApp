@@ -1,4 +1,7 @@
-using CS3750BankApp.Models;
+
+﻿using CS3750BankApp.Models;
+using Microsoft.AspNetCore.Mvc;
+
 using System.Security.Cryptography;
 
 namespace CS3750BankApp.DataAccess
@@ -40,6 +43,7 @@ namespace CS3750BankApp.DataAccess
             return transactions;
         }
 
+        
 
         public static List<Transactions> GetTransactions(int accountNumber, string accountType) 
         {
@@ -102,7 +106,7 @@ namespace CS3750BankApp.DataAccess
                 throw;
             }
         }
-        public static User findUser(string id)
+        public static User FindUser(string id)
         {
             User user;
             try
@@ -118,6 +122,25 @@ namespace CS3750BankApp.DataAccess
                 throw;
             }
             return user;
+        }
+
+        internal static Boolean UserExistsByEmail(string email)
+        {
+
+            User user = new User();
+            try
+            {
+                using (BankDbContext db = new BankDbContext())
+                {
+                    user = db.Users.First(q => q.Email == email);
+                    return true;
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return false;
+            }          
         }
 
         public static string HashPassword(byte[] bytesToHash, byte[] salt)

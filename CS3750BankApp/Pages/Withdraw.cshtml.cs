@@ -30,7 +30,16 @@ namespace CS3750BankApp.Pages
                 return Page();
             }
 
-            WithdrawDetails.WithdrawFrom = Int32.Parse(Request.Form["withdraw"]);
+            try
+            {
+                WithdrawDetails.WithdrawFrom = Int32.Parse(Request.Form["withdraw"]);
+            }
+            catch (FormatException fe)
+            {
+                negativeAccountMsg = "Must Select an account";
+                OnGet();
+                return Page();
+            }
 
             double deposit = Convert.ToDouble(WithdrawDetails.TransferAmmount);
             deposit = deposit * 100;

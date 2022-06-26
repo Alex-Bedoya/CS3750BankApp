@@ -13,6 +13,7 @@
         <div class="text-danger" asp-validation-summary="ModelOnly"></div>
         <div class="row">
             <div class="col">
+                <span class="text-danger">@Model.noUserNameMsg</span><br />
                 <label asp-for="Credential.AccountNumber">Account Number:&nbsp;</label>
                 <input asp-for="Credential.AccountNumber" class="form-control w-25" />
             </div>

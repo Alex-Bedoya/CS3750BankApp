@@ -156,6 +156,7 @@ namespace CS3750BankApp.DataAccess
             {
                 using (BankDbContext db = new BankDbContext())
                 {
+                    Console.WriteLine(db.Accounts.First(q => q.ID == SubAccount).Balance);
                     check = db.Accounts.First(q => q.ID == SubAccount).Balance >= amount;
                 }
             }

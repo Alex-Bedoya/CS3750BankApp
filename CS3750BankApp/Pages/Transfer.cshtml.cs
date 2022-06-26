@@ -8,6 +8,7 @@ namespace CS3750BankApp.Pages
 {
     public class TransferModel : PageModel
     {
+        public string negativeAccountMsg { get; set; }
         public int accountNum { get; set; }
         public List<Account> Accounts { get; set; }
         [BindProperty]
@@ -57,6 +58,8 @@ namespace CS3750BankApp.Pages
 
                 return RedirectToPage("AccountsView");
             }
+
+            negativeAccountMsg = "Not enough money in account!";
             OnGet();
             return Page();
         }

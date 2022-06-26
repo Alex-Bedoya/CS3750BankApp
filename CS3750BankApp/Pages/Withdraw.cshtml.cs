@@ -29,6 +29,7 @@ namespace CS3750BankApp.Pages
                 OnGet();
                 return Page();
             }
+
             WithdrawDetails.WithdrawFrom = Int32.Parse(Request.Form["withdraw"]);
 
             double deposit = Convert.ToDouble(WithdrawDetails.TransferAmmount);

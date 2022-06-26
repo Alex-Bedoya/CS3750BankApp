@@ -117,41 +117,6 @@ namespace CS3750BankApp.DataAccess
             return Convert.ToBase64String(byteResult.GetBytes(24));
         }
 
-        public static List<Transactions> GetTransactions(string accountType)
-        {
-            List<Transactions> transactions;
-            try
-            {
-                using (BankDbContext db = new BankDbContext())
-                {
-                    transactions = db.Transactions.Where(q => q.Sender == accountType || q.Reciever == accountType).ToList();
-                }
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-            return transactions;
-
-        }
-
-        public static List<Transactions> GetAllTransactions()
-        {
-            List<Transactions> transactions;
-            try
-            {
-                using (BankDbContext db = new BankDbContext())
-                {
-                    transactions = db.Transactions.ToList();
-                }
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-            return transactions;
-        }
-
     } 
    
 }

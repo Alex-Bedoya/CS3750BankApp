@@ -74,6 +74,7 @@ namespace CS3750BankApp.Pages
             catch (Exception e)
             {
                 Console.WriteLine(e);
+                user = null;
             }
 
             if (user == null)

@@ -9,6 +9,7 @@ namespace CS3750BankApp.Pages
     public class DepositModel : PageModel
     {
         public int accountNum { get; set; }
+        [BindProperty]
         public List<Account> Accounts { get; set; }
         [BindProperty]
         public DepositDetails DepositDetails { get; set; }
@@ -20,9 +21,14 @@ namespace CS3750BankApp.Pages
             Accounts = DbRepository.GetSubAccounts(accountNum);
         }
 
-        public async Task<IActionResult> OnPostAsync()
-        {
-            if (!ModelState.IsValid) return Page();
+
+
+
+            public async Task<IActionResult> OnPostAsync()
+            {
+            if (!ModelState.IsValid) {
+                OnGet();
+                return Page(); }
 
             DepositDetails.Deposit = Int32.Parse(Request.Form["deposit"]);
 
@@ -60,6 +66,7 @@ namespace CS3750BankApp.Pages
         [Required]
         [Display(Name = "Amount:")]
         public string TransferAmmount { get; set; }
+        [Required]
         [Display(Name = "Description:")]
         public string Description { get; set; }
     }

@@ -43,7 +43,7 @@ namespace CS3750BankApp.Pages
                 transaction.Amount = amount;
                 accountNum = (int)HttpContext.Session.GetInt32("_Account");
                 transaction.AccountNumber = accountNum;
-                transaction.TransactionType = "Transfer";
+                transaction.TransactionType = "Withdraw";
                 transaction.Description = WithdrawDetails.Description;
 
                 //get account type

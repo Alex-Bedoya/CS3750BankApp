@@ -32,6 +32,7 @@ namespace CS3750BankApp.Pages
             {
                 Transactions transaction = new Transactions();
                 transaction.Amount = amount;
+                accountNum = (int)HttpContext.Session.GetInt32("_Account");
                 transaction.AccountNumber = accountNum;
                 transaction.TransactionType = "Transfer";
                 transaction.Description = TransferDetails.Description;

@@ -16,8 +16,9 @@ html {
 body {
   margin-bottom: 60px;
 }
+
 .accountSection {
-    background-color: cadetblue;
+    background-color: darkblue;
     border: solid;
     border-color: black;
     font-size: larger;
@@ -29,15 +30,12 @@ body {
 }
 
 .accountDisplay {
-    background-color: azure;
+    background-color: whitesmoke;
     border-bottom: 5px;
     border-top: solid;
-    border-color: darkblue;
+    border-color: black;
 }
 
-    .accountDisplay :hover {
-        background-color: lightblue;
-    }
 
 .buttonGroup {
     margin-top: 25px;

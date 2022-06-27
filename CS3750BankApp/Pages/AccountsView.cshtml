@@ -11,42 +11,60 @@
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css" />
 <link rel="stylesheet" href="css/site.css" />
 
-<h2>Accounts For Account Number: @Model.accountNum</h2>
-<div class="container-fluid accountSection">
-    <div class="row">
+<style>
+    .accountSection {
+    background-color: mediumblue;
+    border: solid;
+    border-color: black;
+    font-size: larger;
+    border-radius: 10px;
+    margin-block-end: auto;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.accountDisplay {
+    background-color: whitesmoke;
+    border-bottom: 5px;
+    border-top: solid;
+    border-color: black;
+}
+
+</style>
+
+
+<div class="container w-50 pt-5">
+    <h2>Accounts For Account Number: @Model.accountNum</h2>
+    <div class="accountSection container">
+        <div class="row">
         <div class="col-3 fw-bold">
-            <label>Account Number</label>
+            <label class="text-light">Type</label>
         </div>
-        <div class="col-5 fw-bold">
-            <label>Type</label>
-        </div>
-        <div class="col-4 fw-bold">
-            <label>Balance</label>
+        <div class="col-8 fw-bold">
+            <label class="text-light">Balance</label>
         </div>
     </div>
 
     @{
         foreach (Account account in Model.Accounts)
         {
-            <div class="row accountDisplay">
+            <div class="row accountDisplay fw-bold">
                 <div class="col-3">
-                    <label>@account.AccountNumber</label>
-                </div>
-                <div class="col-5">
-                    <a asp-page="AccountDetails" asp-route-Type="@account.Type" asp-route-AccNum="@account.AccountNumber">@account.Type</a>
                     <label>@account.Type</label>
                 </div>
-                <div class="col-4">
-                    <label class="@(account.Balance > 0 ? "text-success" : "text-danger")">@account.Balance</label>
+                <div class="col-8">
+                    <label class="@(account.Balance > 0 ? "text-success" : "text-danger")">$@DbRepository.ConvertToLargeAmount(account.Balance)</label>
                 </div>
+                <a class="mx-auto float-end col-1 btn btn-info" asp-page="AccountDetails" asp-route-Type="@account.Type" asp-route-AccNum="@account.AccountNumber">></a>
             </div>
         }
     }
-
+    </div>
+    <div class="buttonGroup">
+    <a class="btn btn-primary w-25 float-start my-auto" asp-page="./Transfer">Transfer</a>
+    <a class="btn btn-success w-25 my-auto" asp-page="./Deposit">Deposit</a>
+    <a class="btn btn-danger w-25 float-end my-auto" asp-page="./Withdraw">Withdraw</a>
+    <a class="btn btn-secondary w-25 float-end my-auto" asp-page="AccountDetails" asp-route-Type="ALL" asp-route-AccNum="@Model.accountNum">All Transactions</a>
 </div>
-<div class="buttonGroup">
-    <a class="btn btn-primary w-25 float-start my-auto" asp-page="./Transfer"><i class="fa-solid fa-money-bill-transfer"></i>Transfer</a>
-    <a class="btn btn-success w-25 my-auto" asp-page="./Deposit"><i class="fa-solid fa-money-simple-from-bracket"></i>Deposit</a>
-    <a class="btn btn-danger w-25 float-end my-auto" asp-page="./Withdraw"><i class="fa-solid fa-money-from-bracket"></i>Withdraw</a>
-    <a class="btn btn-danger w-25 float-end my-auto" asp-page="AccountDetails" asp-route-Type="ALL" asp-route-AccNum="@Model.accountNum"><i class="fa-solid fa-money-from-bracket"></i>View All Transactions</a>
 </div>

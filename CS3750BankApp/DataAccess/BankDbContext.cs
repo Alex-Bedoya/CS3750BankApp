@@ -24,7 +24,7 @@ namespace CS3750BankApp.DataAccess
 
             //@"Server=DESKTOP-B6VT6G1\SQLEXPRESS;Database=BankApp;Trusted_Connection=True;"); // alex
 
-            optionsBuilder.UseSqlServer("Server=localhost;Database=master;Trusted_Connection=True;"); //Adam
+            //optionsBuilder.UseSqlServer("Server=localhost;Database=master;Trusted_Connection=True;"); //Adam
         }
     }
 }

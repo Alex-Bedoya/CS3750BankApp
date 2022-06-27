@@ -54,7 +54,11 @@
                     <label>@account.Type</label>
                 </div>
                 <div class="col-8">
-                    <label class="@(account.Balance > 0 ? "text-success" : "text-danger")">$@DbRepository.ConvertToLargeAmount(account.Balance)</label>
+                @{
+                    double amount = account.Balance / 100.0;
+                    string strAmount = amount.ToString("0.00");
+                }
+                    <label class="@(account.Balance > 0 ? "text-success" : "text-danger")">$@strAmount</label>
                 </div>
                 <a class="mx-auto float-end col-1 btn btn-info" asp-page="AccountDetails" asp-route-Type="@account.Type" asp-route-AccNum="@account.AccountNumber">></a>
             </div>

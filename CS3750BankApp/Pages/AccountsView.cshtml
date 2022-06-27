@@ -62,9 +62,9 @@
     }
     </div>
     <div class="buttonGroup">
+    <a class="btn btn-secondary w-25 float-end my-auto" asp-page="AccountDetails" asp-route-Type="ALL" asp-route-AccNum="@Model.accountNum">All Transactions</a>
     <a class="btn btn-primary w-25 float-start my-auto" asp-page="./Transfer">Transfer</a>
     <a class="btn btn-success w-25 my-auto" asp-page="./Deposit">Deposit</a>
     <a class="btn btn-danger w-25 float-end my-auto" asp-page="./Withdraw">Withdraw</a>
-    <a class="btn btn-secondary w-25 float-end my-auto" asp-page="AccountDetails" asp-route-Type="ALL" asp-route-AccNum="@Model.accountNum">All Transactions</a>
 </div>
 </div>

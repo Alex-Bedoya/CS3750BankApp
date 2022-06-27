@@ -75,7 +75,7 @@ else
                 <th>@trans[i].Description</th>
                 @{
                     double amount = trans[i].Amount / 100.0;
-                    string strAmount = amount.ToString("0.##");
+                    string strAmount = amount.ToString("0.00");
                 }
                 <th>$@strAmount</th>
                 <th>@trans[i].TransactionType</th>
